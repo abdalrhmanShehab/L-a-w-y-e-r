@@ -1,0 +1,65 @@
+  if ($request->ajax()) {
+
+            $val = Task::validateData($request);
+
+            if ($val->fails())
+                return response($val->errors(), 401);
+            $request->request->add(['user_id' => auth()->id()]);
+            $request->request->add(['start_date' => Carbon::now()]);
+            $task = Task::create($request->except('staffss', 'attachs', '_token', 'action', 'note'));
+            if (count($request->staffss) > 0) {
+                foreach ($request->staffss as $staff) {
+                    TaskStaff::create([
+                        'task_id' => $task->id,
+                        'user_id' => $staff,
+                        'sender_id' => auth()->id()
+                    ]);
+                    Notification::create([
+                        'task_id' => $task->id,
+                        'user_id' => $staff,
+                        'sender_id' => auth()->id(),
+                        'text' => 'تم تحويل مهمه اليك من قبل'
+                    ]);
+                    Mail::to(User::find($staff)->email)->send(new TaskMail($task));
+                }
+                $task->status = 1;
+            } else $task->status = 0;
+            $task->save();
+            if ($request->hasFile('attachs')) {
+                foreach ($request->attachs as $attach) {
+
+                    Attachment::create([
+                        'task_id' => $task->id,
+                        'user_id' => auth()->id(),
+                        'attachment' => $attach->storeAs('public/tasks', Carbon::now()->format('Y-m-d') . $task->id . str_replace(' ', '_', $attach->getClientOriginalName()))
+                    ]);
+                }
+            }
+            TaskAction::create([
+                'task_id' => $task->id,
+                'user_id' => auth()->id(),
+                'type_id' => 2,
+                'text' => 'تم انشاء المهمة بواسطة '.auth()->user()->name.' بتاريخ '.Carbon::now()->format('Y-m-d'),
+                'note' => $request->note,
+            ]);
+            if(count($request->staffss)>0){
+                $txt= 'تم ارسال المهمة بواسطة '.auth()->user()->name.' الى '.User::find($request->satffss[0])->name.' بتاريخ '.Carbon::now()->format('Y-m-d');
+                if ($request->action){
+                    $txt=$txt.' وطلب الاجراء '.$request->action;
+                }
+            }else{
+                $txt= 'تم اضافة اجراء بواسطة '.auth()->user()->name.' بتاريخ '.Carbon::now()->format('Y-m-d');
+            }
+            if ($request->aciton) {
+                TaskAction::create([
+                    'task_id' => $task->id,
+                    'user_id' => auth()->id(),
+                    'type_id' => 1,
+                    'text' => $txt,
+                    'note' => $request->note,
+                ]);
+            }
+            $message = trans("ar.created_successfully");
+            return response(["status" => true, "message" => $message], 201);
+
+        }

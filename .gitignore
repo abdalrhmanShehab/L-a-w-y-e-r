@@ -1,0 +1,15 @@
+/lawyer/node_modules
+/lawyer/public/hot
+/lawyer/public/storage
+/lawyer/storage/*.key
+/lawyer/vendor
+/lawyer/.env
+/lawyer/.env.backup
+/lawyer/.phpunit.result.cache
+/lawyer/docker-compose.override.yml
+/lawyer/Homestead.json
+/lawyer/Homestead.yaml
+/lawyer/npm-debug.log
+/lawyer/yarn-error.log
+/.idea
+/.vscode

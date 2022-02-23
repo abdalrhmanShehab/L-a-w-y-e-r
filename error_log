@@ -1,0 +1,4 @@
+[25-Aug-2021 21:23:41 UTC] PHP Warning:  require(/home/track/public_html/../car/vendor/autoload.php): failed to open stream: No such file or directory in /home/track/public_html/index.php on line 24
+[25-Aug-2021 21:23:41 UTC] PHP Fatal error:  require(): Failed opening required '/home/track/public_html/../car/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/track/public_html/index.php on line 24
+[25-Aug-2021 21:23:46 UTC] PHP Warning:  require(/home/track/public_html/../car/vendor/autoload.php): failed to open stream: No such file or directory in /home/track/public_html/index.php on line 24
+[25-Aug-2021 21:23:47 UTC] PHP Fatal error:  require(): Failed opening required '/home/track/public_html/../car/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/track/public_html/index.php on line 24
