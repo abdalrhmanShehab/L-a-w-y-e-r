@@ -4,9 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>User Management</h2>
-            </div>
+
             @can('create user')
             <div class="pull-right">
                 <a class="btn btn-outline-dark btn-lg" href="{{ route('users.create') }}"> Create New User</a>

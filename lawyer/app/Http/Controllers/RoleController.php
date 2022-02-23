@@ -25,22 +25,25 @@ class RoleController extends Controller
 
     public function index(Request $request)
     {
+        $page = 'Role Managment';
         $username = Auth::user()->name;
         $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('roles.index',compact('roles','username'))
+        return view('roles.index',compact('roles','username','page'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
+        $page = 'Role Managment';
         $username = Auth::user()->name;
         $permission = Permission::get();
-        return view('roles.create',compact('permission','username'));
+        return view('roles.create',compact('permission','username','page'));
     }
 
 
     public function store(Request $request)
     {
+        $page = 'Role Managment';
         $username = Auth::user()->name;
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
@@ -50,24 +53,28 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('roles.index')->with('username', $username)
+        return redirect()->route('roles.index')->with(['username'=> $username,'page'=>$page])
             ->with('success','Role created successfully');
     }
 
     public function show($id)
     {
+        $page = 'Role Managment';
+
         $username = Auth::user()->name;
         $role = Role::find($id);
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
             ->get();
 
-        return view('roles.show',compact('role','rolePermissions','username'));
+        return view('roles.show',compact('role','rolePermissions','username','page'));
     }
 
 
     public function edit($id)
     {
+        $page = 'Role Managment';
+
         $username = Auth::user()->name;
         $role = Role::find($id);
         $permission = Permission::get();
@@ -75,12 +82,14 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
 
-        return view('roles.edit',compact('role','permission','rolePermissions','username'));
+        return view('roles.edit',compact('role','permission','rolePermissions','username','page'));
     }
 
 
     public function update(Request $request, $id)
     {
+        $page = 'Role Managment';
+
         $username = Auth::user()->name;
         $this->validate($request, [
             'name' => 'required',
@@ -93,7 +102,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('roles.index')->with('username',$username)
+        return redirect()->route('roles.index')->with(['username'=>$username,'page'=>$page])
             ->with('success','Role updated successfully');
     }
 

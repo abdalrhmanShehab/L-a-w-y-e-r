@@ -15,7 +15,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $page = 'Dashboad';
         $username = Auth::user()->name;
-        return view('layouts.admin.dashboard',compact('username'));
+        return view('layouts.admin.dashboard',compact('username','page'));
     }
 }

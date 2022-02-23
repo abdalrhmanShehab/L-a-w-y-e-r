@@ -28,18 +28,19 @@ class UserController extends Controller
     {
 
         $username = Auth::user()->name;
-
+        $page = 'User Managment';
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data','username'))
+        return view('users.index',compact('data','username','page'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
 
     public function create()
     {
+        $page = 'User Managment';
         $username = Auth::user()->name;
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles','username'));
+        return view('users.create',compact('roles','username','page'));
     }
 
 
@@ -47,7 +48,7 @@ class UserController extends Controller
     {
         $username = Auth::user()->name;
 
-
+        $page = 'User Managment';
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -56,34 +57,35 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success','User created successfully')->with('username',$username);
+            ->with('success','User created successfully')->with(['username'=> $username,'page'=>$page]);
     }
 
 
     public function show($id)
     {
-
+        $page = 'UserManagment';
         $username = Auth::user()->name;
         $user = User::find($id);
-        return view('users.show',compact('user','username'));
+        return view('users.show',compact('user','username','page'));
     }
 
 
     public function edit($id)
     {
+        $page = 'User Managment';
         $username = Auth::user()->name;
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole','username'));
+        return view('users.edit',compact('user','roles','userRole','username','page'));
     }
 
 
     public function update(UpdateUserRequest $request, $id)
     {
         $username = Auth::user()->name;
-
+        $page = 'User Managment';
 
         $input = $request->all();
         if(!empty($input['password'])){
@@ -98,7 +100,7 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')->with('username',$username)
+        return redirect()->route('users.index')->with(['username'=>$username,'page'=>$page])
             ->with('success','User updated successfully');
     }
 

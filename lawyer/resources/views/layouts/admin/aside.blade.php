@@ -2,7 +2,7 @@
 
     <a href="{{route('admin.home')}}" class="brand-link">
         <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Lawyer</span>
+        <span class="brand-text font-weight-light">{{__('Lawyer')}}</span>
     </a>
 
     <div class="sidebar">
@@ -16,26 +16,17 @@
             </div>
         </div>
 
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item menu-open">
+                <li class="nav-item menu-close">
                     <a href="#" class="nav-link ">
 {{--                        fa-solid fa-user-gear--}}
                         <i class="nav-icon"></i>
                         <p>
-                            User MNG
+                            {{__('User MNG')}}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -43,19 +34,19 @@
                         <li class="nav-item ">
                             <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="fa-solid fa-users nav-icon"></i>
-                                <p>Users</p>
+                                <p>{{__('Users')}}</p>
                             </a>
                         </li>
 
                     </ul>
                 </li>
 
-                <li class="nav-item menu-open">
+                <li class="nav-item menu-close">
                     <a href="#" class="nav-link ">
 {{--                        fa-solid fa-rectangle-xmark--}}
                         <i class="nav-icon"></i>
                         <p>
-                            Role MNG
+                            {{__('Role MNG')}}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -63,7 +54,27 @@
                         <li class="nav-item">
                             <a href="{{ route('roles.index') }}" class="nav-link">
                                 <i class="fa-solid fa-rectangle-list nav-icon"></i>
-                                <p>Roles</p>
+                                <p>{{__('Roles')}}</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link ">
+                        {{--                        fa-solid fa-rectangle-xmark--}}
+                        <i class="nav-icon"></i>
+                        <p>
+                            {{__('Appointment MNG')}}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('appointments.index')}}" class="nav-link">
+                                <i class="fa-solid fa-calendar nav-icon"></i>
+                                <p>{{__('Appointments')}}</p>
                             </a>
                         </li>
 
