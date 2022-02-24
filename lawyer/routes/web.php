@@ -33,7 +33,7 @@ Route::group([
     Route::resource('/roles', RoleController::class);
     Route::resource('/users', UserController::class);
     Route::resource('/appointments', AppointmentController::class);
-
+    Route::get('/createEvent',[AppointmentController::class,'createEvent'])->name('event.create');
 });
 
 
