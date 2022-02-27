@@ -1,5 +1,26 @@
 @extends('layouts.admin.master')
 @section('content')
+
+    <!-- Modal -->
+    <div class="modal fade" id="createAppointment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Appointment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="title">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -33,7 +54,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create Event</h3>
                             </div>
-                            <form action="{{route('event.create')}}" method="post">
+
                                 <div class="card-body">
                                     <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
                                         <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
@@ -58,7 +79,7 @@
                                     </div>
                                     <!-- /input-group -->
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>
