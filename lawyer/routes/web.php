@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,12 +31,11 @@ Route::group([
    'prefix'=>'admin',
    'middleware'=>'is_admin'
 ],function($router){
-    Route::get('/dashboard',[\App\Http\Controllers\AdminController::class,'index'])->name('admin.home');
+    Route::get('/dashboard',[AdminController::class,'index'])->name('admin.home');
     Route::resource('/roles', RoleController::class);
     Route::resource('/users', UserController::class);
-    Route::get('/appointments', [AppointmentController::class,'index'])->name('appointments.index');
-    Route::post('/appointments/create',[AppointmentController::class,'create'])->name('appointments.create');
-
+    Route::get('appointments',[FullCalendarController::class,'index'])->name('appointments.index');
+    Route::post('appointments/action',[FullCalendarController::class,'action']);
 });
 
 
