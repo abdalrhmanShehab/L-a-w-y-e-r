@@ -15,11 +15,13 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('event_name');
-            $table->dateTime('event_start');
-            $table->dateTime('event_end');
-            $table->bigInteger('lawyer_id');
-            $table->bigInteger('user_id')->nullable();
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->unsignedBigInteger('lawyer_id');
+            $table->foreign('lawyer_id')->references('id')->on('users')->onDelete('RESTRICT')->onUpdate('RESTRICT');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->timestamps();
         });
     }
