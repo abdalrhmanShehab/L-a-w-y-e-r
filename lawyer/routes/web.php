@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -27,26 +28,30 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group([
-   'namespace'=>'',
-   'prefix'=>'admin',
-   'middleware'=>['is_admin','auth']
-],function($router){
-    Route::get('/dashboard',[AdminController::class,'index'])->name('admin.home');
+    'namespace' => '',
+    'prefix' => 'admin',
+    'middleware' => ['is_admin', 'auth']
+], function ($router) {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.home');
     Route::resource('/roles', RoleController::class);
     Route::resource('/users', UserController::class);
-    Route::get('appointments',[FullCalendarController::class,'index'])->name('appointments.index');
-    Route::post('appointment/action',[FullCalendarController::class,'action']);
+    Route::get('appointments', [FullCalendarController::class, 'index'])->name('appointments.index');
+    Route::post('appointment/action', [FullCalendarController::class, 'action']);
 });
 
 
 Route::group([
-    'namespace'=>'App\Http\Controllers',
-    'prefix'=>'',
-    'middleware'=>'auth'
-],function($router){
-
-route::get('/',[AdminController::class,'userindex'])->name('user.dashboard');
-route::get('/appointment',[\App\Http\Controllers\BookingController::class,'booking'])->name('user.booking');
-route::post('/appointment/getAppointments/{id}',[\App\Http\Controllers\BookingController::class,'getAppointments']);
-
+    'namespace' => 'App\Http\Controllers',
+    'prefix' => '',
+    'middleware' => 'auth'
+], function ($router) {
+    route::get('/', [AdminController::class, 'userindex'])->name('user.dashboard');
+    Route::get('/index', [BookingController::class, 'index'])->name('user.booking');
+    Route::get('lawyer/all', [BookingController::class, 'allData']);
+    Route::get('appointments/{id}',[BookingController::class,'getBookingLawyer']);
+    Route::get('getBooking/{id}',[BookingController::class,'getBooking']);
+//    Route::post('/appointment/store', [BookingController::class, 'addData']);
+//    Route::get('/appointment/edit/{id}', [BookingController::class, 'editData']);
+//    Route::post('/appointment/update/{id}', [BookingController::class, 'updateData']);
+//    Route::get('/appointment/delete/{id}', [BookingController::class, 'deleteData']);
 });

@@ -10,14 +10,14 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>Lawyer</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/userTemplate/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet"
           type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/userTemplate/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
@@ -47,7 +47,7 @@
         <!-- Footer -->
             <!-- End of Footer -->
             <!-- Bootstrap core JavaScript-->
-            <script src="{{asset('assets/userTemplate/vendor/jquery/jquery.min.js')}}"></script>
+{{--            <script src="{{asset('assets/userTemplate/vendor/jquery/jquery.min.js')}}"></script>--}}
             <script src="{{asset('assets/userTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
             <!-- Core plugin JavaScript-->
@@ -62,8 +62,15 @@
             <!-- Page level custom scripts -->
             <script src="{{asset('assets/userTemplate/js/demo/chart-area-demo.js')}}"></script>
             <script src="{{asset('assets/userTemplate/js/demo/chart-pie-demo.js')}}"></script>
-            <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
-                    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                    crossorigin="anonymous"></script>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
