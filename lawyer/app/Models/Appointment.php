@@ -14,5 +14,6 @@ class Appointment extends Model
         'end',
         'lawyer_id',
         'user_id',
+        'color'
     ];
 }

@@ -46,12 +46,11 @@ Route::group([
     'middleware' => 'auth'
 ], function ($router) {
     route::get('/', [AdminController::class, 'userindex'])->name('user.dashboard');
+    route::get('/myAppointments', [AdminController::class, 'getMyAppointment'])->name('user.myBooking');
     Route::get('/index', [BookingController::class, 'index'])->name('user.booking');
     Route::get('lawyer/all', [BookingController::class, 'allData']);
     Route::get('appointments/{id}',[BookingController::class,'getBookingLawyer']);
     Route::get('getBooking/{id}',[BookingController::class,'getBooking']);
-//    Route::post('/appointment/store', [BookingController::class, 'addData']);
-//    Route::get('/appointment/edit/{id}', [BookingController::class, 'editData']);
-//    Route::post('/appointment/update/{id}', [BookingController::class, 'updateData']);
-//    Route::get('/appointment/delete/{id}', [BookingController::class, 'deleteData']);
+    Route::post('Booking',[BookingController::class,'Booking']);
+
 });

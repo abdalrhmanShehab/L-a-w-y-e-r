@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->string('color');
             $table->unsignedBigInteger('lawyer_id');
             $table->foreign('lawyer_id')->references('id')->on('users')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->unsignedBigInteger('user_id')->nullable();

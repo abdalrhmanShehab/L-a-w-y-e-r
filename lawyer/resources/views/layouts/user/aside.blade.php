@@ -36,9 +36,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-
-                <a class="collapse-item" href="{{route('user.booking')}}">Appointments</a>
-{{--                <a class="collapse-item" href="cards.html">Cards</a>--}}
+                <a class="collapse-item" href="{{route('user.booking')}}">{{__('Appointments')}}</a>
+                <a class="collapse-item" href="{{route('user.myBooking')}}">{{__('My Appointments')}}</a>
             </div>
         </div>
     </li>
