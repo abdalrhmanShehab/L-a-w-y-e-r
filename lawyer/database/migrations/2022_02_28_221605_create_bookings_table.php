@@ -20,6 +20,7 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('appointment_id');
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

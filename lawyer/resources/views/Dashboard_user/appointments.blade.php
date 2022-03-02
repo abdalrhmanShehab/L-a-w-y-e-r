@@ -131,8 +131,6 @@
         //booking
         function getBooking(id) {
             $('#Booking').modal('toggle');
-            $('#detailsError').hide();
-            $('#subjectError').hide();
             $.ajax({
                 type: "GET",
                 dataType: "json",

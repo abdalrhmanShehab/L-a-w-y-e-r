@@ -5,6 +5,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserBookingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,10 @@ Route::group([
     'middleware' => 'auth'
 ], function ($router) {
     route::get('/', [AdminController::class, 'userindex'])->name('user.dashboard');
-    route::get('/myAppointments', [AdminController::class, 'getMyAppointment'])->name('user.myBooking');
+
+    route::get('/myAppointments', [UserBookingController::class, 'getMyAppointment'])->name('user.myBooking');
+    route::get('/cancel/Appointment/{id}',[UserBookingController::class,'cancelBooking'])->name('user.unBooking');
+
     Route::get('/index', [BookingController::class, 'index'])->name('user.booking');
     Route::get('lawyer/all', [BookingController::class, 'allData']);
     Route::get('appointments/{id}',[BookingController::class,'getBookingLawyer']);

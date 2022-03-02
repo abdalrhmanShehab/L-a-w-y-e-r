@@ -24,6 +24,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
