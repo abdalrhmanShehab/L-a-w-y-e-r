@@ -38,6 +38,8 @@ Route::group([
     Route::resource('/users', UserController::class);
     Route::get('appointments', [FullCalendarController::class, 'index'])->name('appointments.index');
     Route::post('appointment/action', [FullCalendarController::class, 'action']);
+    Route::post('appointment/create',[FullCalendarController::class,'create'])->name('appointment.create');
+
 });
 
 
@@ -49,12 +51,12 @@ Route::group([
     route::get('/', [AdminController::class, 'userindex'])->name('user.dashboard');
 
     route::get('/myAppointments', [UserBookingController::class, 'getMyAppointment'])->name('user.myBooking');
-    route::get('/cancel/Appointment/{id}',[UserBookingController::class,'cancelBooking'])->name('user.unBooking');
+    route::get('/cancel/Appointment/{id}', [UserBookingController::class, 'cancelBooking'])->name('user.unBooking');
 
     Route::get('/index', [BookingController::class, 'index'])->name('user.booking');
     Route::get('lawyer/all', [BookingController::class, 'allData']);
-    Route::get('appointments/{id}',[BookingController::class,'getBookingLawyer']);
-    Route::get('getBooking/{id}',[BookingController::class,'getBooking']);
-    Route::post('Booking',[BookingController::class,'Booking']);
+    Route::get('appointments/{id}', [BookingController::class, 'getBookingLawyer']);
+    Route::get('getBooking/{id}', [BookingController::class, 'getBooking']);
+    Route::post('Booking', [BookingController::class, 'Booking']);
 
 });

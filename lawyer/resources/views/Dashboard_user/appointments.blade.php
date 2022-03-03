@@ -175,7 +175,7 @@
                 },
 
                 success: function (data) {
-                    console.log(data.lawyer_id)
+                    console.log(data)
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',

@@ -86,7 +86,7 @@ class PermissionsSeeder extends Seeder
 
         $user = \App\Models\User::factory()->create([
             'name' => 'lawyer',
-            'email' => 'lawyer@admin.com',
+            'email' => 'lawyer@email.com',
             'is_admin'=>'1',
             'password'=>bcrypt('123456789')
         ]);

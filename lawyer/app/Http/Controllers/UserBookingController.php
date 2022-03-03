@@ -28,7 +28,7 @@ class UserBookingController extends Controller
         return view('Dashboard_user.myAppointments',compact(['appointments']));
     }
     public function cancelBooking($id){
-        $appointment = Appointment::findOrFail($id)->whereNull('deleted_at')->update([
+        $appointment = Appointment::where('id',$id)->whereNull('deleted_at')->update([
             'title'=>'available',
             'color'=>'#4BB543',
             'user_id'=>null

@@ -63,7 +63,8 @@
 
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 
-<script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{{--<script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
 <script src="{{asset('assets/dist/js/adminlte.min.js?v=3.2.0')}}"></script>
 <script src="{{asset('assets/fontawesome-free/js/all.min.js')}}"></script>
